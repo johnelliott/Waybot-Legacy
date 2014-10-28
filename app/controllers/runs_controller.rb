@@ -24,8 +24,15 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    @run = Run.new(run_params)
-
+    # store json in a temporary object and send it to the hits controller to be stored
+    if params[:json]
+      @json_temp_data = set_json_temp_data(run_params)
+    end
+    @run = Run.new(run_params.except(:json))
+    # TODO send a message to hits contoller, and make that controller
+      # call Run.store_run_params(@json_temp_data[:name, :this, :that])
+    # TODO save the appropriate data from @json_temp_data into the new run, for which i'll probably use a new runs model method
+      # call Run.store_hits(@json_temp_data[:data])
     respond_to do |format|
       if @run.save
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
@@ -67,8 +74,13 @@ class RunsController < ApplicationController
       @run = Run.find(params[:id])
     end
 
+    def set_json_temp_data
+      json_temp_data = params[:json] # is this even right?
+      parsed_json = JSON.parse(json_temp_data, {symbolize_names => true})
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:user_id, :name, :note, :start_time, :end_time, :completed)
+      params.require(:run).permit(:user_id, :name, :note, :start_time, :end_time, :completed, :json)
     end
 end
