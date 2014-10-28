@@ -42,5 +42,5 @@ gem 'spring',        group: :development
 gem 'faker', '~> 1.4.3'
 
 group :test do
-  gem "minitest", "~> 4.7"
+  gem "minitest"
 end
