@@ -40,3 +40,7 @@ gem 'spring',        group: :development
 
 # Use faker
 gem 'faker', '~> 1.4.3'
+
+group :test do
+  gem "minitest", "~> 4.7"
+end
