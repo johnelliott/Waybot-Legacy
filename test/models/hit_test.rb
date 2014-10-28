@@ -1,7 +1,9 @@
 require 'test_helper'
 
-class HitTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+describe Hit do
+  describe ".store_hits" do
+    it "should store nothing" do
+      Hit.store_hits([]).must_equal []
+    end
+  end
 end

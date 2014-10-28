@@ -24,7 +24,13 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    @run = Run.new(run_params)
+    # store json in a temporary object and send it to the hits controller to be stored
+    if params[:json]
+      @json_temp_data = set_json_temp_data(run_params)
+      Hit.store_hits(@json_temp_data[:hit_minutes])
+      # Run.store_run_params(@json_temp_data[:name, :this, :that])
+    end
+    @run = Run.new(run_params.except(:json))
 
     respond_to do |format|
       if @run.save
@@ -67,8 +73,13 @@ class RunsController < ApplicationController
       @run = Run.find(params[:id])
     end
 
+    def set_json_temp_data
+      json_temp_data = params[:json] # is this even right?
+      parsed_json = JSON.parse(json_temp_data, {symbolize_names => true})
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def run_params
-      params.require(:run).permit(:user_id, :name, :note, :start_time, :end_time, :completed)
+      params.require(:run).permit(:user_id, :name, :note, :start_time, :end_time, :completed, :json)
     end
 end
