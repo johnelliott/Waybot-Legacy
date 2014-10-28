@@ -27,13 +27,14 @@ class RunsController < ApplicationController
     # store json in a temporary object and send it to the hits controller to be stored
     if params[:json]
       @json_temp_data = set_json_temp_data(run_params)
+      Hit.store_hits(@json_temp_data[:hit_minutes])
     end
     @run = Run.new(run_params.except(:json))
     # TODO send a message to hits contoller, and make that controller
       # call Run.store_ run_params(@json_temp_data[:name, :this, :that])
     # TODO save the appropriate data from @json_temp_data into the new run, for which i'll probably use a new runs model method
       #hits
-      Hit.store_hits(@json_temp_data[:hit_minutes])
+
     respond_to do |format|
       if @run.save
         format.html { redirect_to @run, notice: 'Run was successfully created.' }
