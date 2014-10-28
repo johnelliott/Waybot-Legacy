@@ -38,9 +38,11 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Use faker
-gem 'faker', '~> 1.4.3'
-
 group :test do
   gem "minitest"
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'faker', '~> 1.4.3'
 end
