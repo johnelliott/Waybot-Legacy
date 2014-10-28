@@ -12,4 +12,8 @@ class ActiveSupport::TestCase
   register_spec_type self do |desc|
     desc < ActiveRecord::Base if desc.is_a? Class
   end
+  # MiniTest::Spec
+  class MiniTest::Spec
+    include FactoryGirl::Syntax::Methods
+  end
 end
