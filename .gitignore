@@ -21,3 +21,6 @@
 
 # Ignore env file
 .env
+
+# my own rake task
+john.rake

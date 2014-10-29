@@ -1,7 +1,6 @@
-<p>
-  <strong>User:</strong>
-  <%= @run.user %>
-</p>
+<h1>yoyoo
+  <%= current_user.email %>
+</h1>
 
 <p>
   <strong>Name:</strong>
@@ -15,12 +14,7 @@
 
 <p>
   <strong>Start time:</strong>
-  <%= @run.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @run.end_time %>
+  <%= @run.start_time %> to <%= @run.end_time %>
 </p>
 
 <p>
