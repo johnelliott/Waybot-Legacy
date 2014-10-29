@@ -48,10 +48,9 @@ group :test do
   gem "minitest"
 end
 
-group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'faker', '~> 1.4.3'
-end
+# Use factory girl and faker to 
+gem 'factory_girl_rails'
+gem 'faker', '~> 1.4.3'
 
 group :production do
   # Use 12factor for asset precompilation on rails
