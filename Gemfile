@@ -35,9 +35,6 @@ gem 'spring',        group: :development
 # Use devise for authentication
 gem 'devise'
 
-# Use Figaro for ENVs
-gem 'figaro'
-
 # Use unicorn as the app server
 # gem 'unicorn'
 
