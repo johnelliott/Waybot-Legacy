@@ -2,6 +2,7 @@ require 'test_helper'
 
 class RunsControllerTest < ActionController::TestCase
   setup do
+    @user = FactoryGirl.create :user
     @run = Run.create!()
   end
 
