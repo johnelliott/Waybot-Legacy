@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <!-- insert notices for Devise auth gem -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <!-- insert notices for Devise auth gem -->
+  <%= yield %>
 
 </body>
 </html>
