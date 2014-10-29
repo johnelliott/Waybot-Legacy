@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
       <th>Name</th>
       <th>Note</th>
       <th>Start time</th>
@@ -16,7 +15,6 @@
   <tbody>
     <% @runs.each do |run| %>
       <tr>
-        <td><%= run.user %></td>
         <td><%= run.name %></td>
         <td><%= run.note %></td>
         <td><%= run.start_time %></td>

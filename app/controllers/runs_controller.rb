@@ -24,12 +24,7 @@ class RunsController < ApplicationController
   # POST /runs
   # POST /runs.json
   def create
-    # store json in a temporary object and send it to the hits controller to be stored
-    if params[:json]
-      @json_temp_data = set_json_temp_data(run_params)
-      Hit.store_hits(@json_temp_data[:hit_minutes])
-      # Run.store_run_params(@json_temp_data[:name, :this, :that])
-    end
+    store_hits_helper
     @run = Run.new(run_params.except(:json))
 
     respond_to do |format|
@@ -46,6 +41,7 @@ class RunsController < ApplicationController
   # PATCH/PUT /runs/1
   # PATCH/PUT /runs/1.json
   def update
+    store_hits_helper
     respond_to do |format|
       if @run.update(run_params)
         format.html { redirect_to @run, notice: 'Run was successfully updated.' }
@@ -71,6 +67,15 @@ class RunsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_run
       @run = Run.find(params[:id])
+    end
+
+    def store_hits_helper
+      # store json in a temporary object and send it to the hits controller to be stored
+      if params[:json]
+        @json_temp_data = set_json_temp_data(run_params)
+        Hit.store_hits(@json_temp_data[:hit_minutes])
+        # Run.store_run_params(@json_temp_data[:name, :this, :that])
+      end
     end
 
     def set_json_temp_data
