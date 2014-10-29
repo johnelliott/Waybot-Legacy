@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :runs
-  resources :users
+  resources :users, except: :index
   root 'runs#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
