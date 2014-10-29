@@ -7,7 +7,7 @@ class RunsController < ApplicationController
   def index
   # This is a hack, peoper authorization needed
   # @runs = Run.all
-    @runs = User.find(current_user.id).runs
+    @runs = current_user.runs
   end
 
   # GET /runs/1
