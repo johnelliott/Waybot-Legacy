@@ -1,10 +1,13 @@
 class RunsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_run, only: [:show, :edit, :update, :destroy]
 
   # GET /runs
   # GET /runs.json
   def index
-    @runs = Run.all
+  # This is a hack, peoper authorization needed
+  # @runs = Run.all
+    @runs = User.find(current_user.id).runs
   end
 
   # GET /runs/1
