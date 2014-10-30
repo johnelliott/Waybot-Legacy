@@ -14,7 +14,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
+            <li>
+              <%= link_to edit_user_registration_path do %>
+              <%= content_tag(:i,nil, :class=>"fa fa-cogs")%><span>  Sign out</span>
+              <% end -%>
+            </li>
             <li>Sign out</li>
           </ul>
         </div><!--/.nav-collapse -->

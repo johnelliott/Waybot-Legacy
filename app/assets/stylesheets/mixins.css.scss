@@ -6,10 +6,6 @@ table {
   @extend .table, .table-hover, .table-responsive;
 }
 
-// .row {
-//   @extend .row;
-// }
-
 ul.runs {
   @extend .list-group;
 
@@ -24,3 +20,4 @@ ul.runs {
     @extend .list-group-item-text;
   }
 }
+
