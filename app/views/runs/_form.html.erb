@@ -28,12 +28,10 @@
     <%= f.datetime_select :end_time %>
   </div>
   <div class="field">
-    <%= f.label :completed %><br>
-    <%= f.check_box :completed %>
+   <%= f.check_box :completed %> <%= f.label :completed %>
   </div>
 
   <div class="field"><%= f.file_field :json %></div>
-
 
   <div class="actions">
     <%= f.submit %>

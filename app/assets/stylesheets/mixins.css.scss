@@ -21,3 +21,16 @@ ul.runs {
   }
 }
 
+form {
+  @extend .form-horizontal;
+  // div.field  {
+  //   @extend .form-group;
+  // }
+  input {
+    @extend .form-control;
+  }
+  .actions {
+    @extend .btn, .btn-submit;
+  }
+}
+

@@ -9,17 +9,19 @@
             <span class="icon-bar"></span>
           </button>
           <%= link_to root_path, class: "navbar-brand" do %>
-            <%= content_tag(:i,nil, :class=>"fa fa-road")%><span>  Waybot</span>
+            <%= content_tag(:i,nil, :class=>"fa fa-road")%><span> Waybot</span>
           <% end -%>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li>
               <%= link_to edit_user_registration_path do %>
-              <%= content_tag(:i,nil, :class=>"fa fa-cogs")%><span>  Sign out</span>
+              <span>Settings</span>
               <% end -%>
             </li>
-            <li>Sign out</li>
+            <li>
+              <%= link_to('Sign out', destroy_user_session_path, :method => :delete) %>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
