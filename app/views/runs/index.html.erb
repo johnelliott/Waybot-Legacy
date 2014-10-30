@@ -1,33 +1,24 @@
-<h1>Listing runs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Note</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Completed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
+  <h1>Runs</h1>
+  <table>
+    <thead>
+      <tr>
+        <td>
+          <%= link_to new_run_path do %><i class="fa fa-plus"></i><span> new</span><% end %>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
     <% @runs.each do |run| %>
       <tr>
-        <td><%= run.name %></td>
-        <td><%= run.note %></td>
-        <td><%= run.start_time %></td>
-        <td><%= run.end_time %></td>
-        <td><%= run.completed %></td>
-        <td><%= link_to 'Show', run %></td>
-        <td><%= link_to 'Edit', edit_run_path(run) %></td>
-        <td><%= link_to 'Destroy', run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to run.name, edit_run_path(run) %></td>
+        <td><%= link_to (run.elapsed_time), edit_run_path(run) %></td>
+        <td><%= link_to content_tag(:i,nil, :class=>"fa fa-times"), run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<br>
 
-<%= link_to 'New Run', new_run_path %>
+
