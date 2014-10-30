@@ -7,9 +7,9 @@ table {
 }
 
 .row {
-  @extend .row
+  @extend .row;
 }
 
 ul .runs {
-  @extend .list-group
+  @extend .list-group;
 }
