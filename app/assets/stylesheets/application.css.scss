@@ -31,6 +31,8 @@
  @import "fontawesome/scss/icons";
 
 // Bootstrap
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
+@import 'bootstrap-datetimepicker';
 
 // main.css.scss
 @import "bootswatch_variables.scss";

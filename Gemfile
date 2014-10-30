@@ -41,6 +41,10 @@ gem 'devise'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Use https://github.com/Eonasdan/bootstrap-datetimepicker/wiki/Installation#rails-
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
+
 group :test do
   gem "minitest"
 end

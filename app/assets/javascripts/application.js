@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sass-official/assets/javascripts/bootstrap.js
+//= require moment
+//= require bootstrap-datetimepicker

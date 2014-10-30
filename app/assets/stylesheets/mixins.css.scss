@@ -1,6 +1,7 @@
-// .container {
-//   @extend .container
-// }
+.page {
+  // @extend .col-md-12;
+  // padding: 1em 2.5em;
+}
 
 table {
   @extend .table, .table-hover, .table-responsive;
@@ -21,14 +22,12 @@ ul.runs, ul.show {
   }
 }
 
-.row {
-  @extend .col-md-10;
-}
 form {
   @extend .form-horizontal;
-  
+  padding: 1em 2.5em;
   .field  {
     @extend .form-group;
+    // @extend .col-md-12;
   }
 
   label {
@@ -43,6 +42,10 @@ form {
   }
   .actions {
     @extend .btn;
+  }
+
+  input[type=checkbox] {
+    display: inline;
   }
 
   // #run_json {
