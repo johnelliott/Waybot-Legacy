@@ -2,8 +2,12 @@
 //   @extend .container
 // }
 
-table tbody td {
-  color: red;
+table {
+  @extend .table, .table-hover, .table-responsive;
+}
+
+.row {
+  @extend .row
 }
 
 // .new_button {
