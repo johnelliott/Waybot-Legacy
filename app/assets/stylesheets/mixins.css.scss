@@ -6,10 +6,21 @@ table {
   @extend .table, .table-hover, .table-responsive;
 }
 
-.row {
-  @extend .row;
-}
+// .row {
+//   @extend .row;
+// }
 
-ul .runs {
+ul.runs {
   @extend .list-group;
+
+  h1, h2, h3, h4 {
+    @extend .list-group-item-heading;
+  }
+  li {
+    @extend .list-group-item;
+  }
+
+  p {
+    @extend .list-group-item-text;
+  }
 }

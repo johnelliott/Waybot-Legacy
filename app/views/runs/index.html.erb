@@ -1,42 +1,14 @@
+<%= render "layouts/navbar" %>
 <div class="row">
-  <%= render "layouts/navbar" %>
-  <table>
-    <thead>
-      <tr>
-        <td>
-          <%= link_to new_run_path do %><i class="fa fa-plus"></i><span> new</span><% end %>
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @runs.each do |run| %>
-      <tr>
-        <td><%= link_to run.name, edit_run_path(run) %></td>
-        <td>
-          <%= link_to edit_run_path(run) do %>
-          <%= run.hits.count %> hits over <%= run.elapsed_time %>
-          <% end %>
-        </td>
-        <td><%= link_to content_tag(:i,nil, :class=>"fa fa-times"), run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<div class="row">
-test below
   <ul class="runs">
-    <li><%= link_to new_run_path do %><i class="fa fa-plus"></i><span> new</span><% end %></li>
+    <li><h3><%= link_to new_run_path do %><i class="fa fa-plus"></i><span> new</span><% end %></h3></li>
       <% @runs.each do |run| %>
       <li>
-        <td><%= link_to run.name, edit_run_path(run) %></td>
-        <td>
+        <h4><%= link_to run.name, edit_run_path(run) %>  <%= link_to content_tag(:i,nil, :class=>"fa fa-times-circle"), run, method: :delete, data: { confirm: 'Are you sure?' } %></h4>
+        <p>
           <%= link_to edit_run_path(run) do %>
           <%= run.hits.count %> hits over <%= run.elapsed_time %>
-          <% end %>
-        </td>
-        <td><%= link_to content_tag(:i,nil, :class=>"fa fa-times"), run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %></p>
       </li>
       <% end %>
   </ul>
