@@ -10,6 +10,6 @@ table {
   @extend .row
 }
 
-// .new_button {
-//   @extend .btn;
-// }
+ul .runs {
+  @extend .list-group
+}

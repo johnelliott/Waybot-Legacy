@@ -1,6 +1,5 @@
 <div class="row">
   <%= render "layouts/navbar" %>
-  <h1>Runs</h1>
   <table>
     <thead>
       <tr>
@@ -10,12 +9,13 @@
       </tr>
     </thead>
     <tbody>
-    <% @runs.each do |run| %>
+      <% @runs.each do |run| %>
       <tr>
         <td><%= link_to run.name, edit_run_path(run) %></td>
-        <td><%= link_to (run.elapsed_time), edit_run_path(run) %></td>
         <td>
-          <%= link_to edit_run_path(run) do %><i class="fa fa-plus"></i><span> new</span><% end %>
+          <%= link_to edit_run_path(run) do %>
+          <%= run.hits.count %> hits over <%= run.elapsed_time %>
+          <% end %>
         </td>
         <td><%= link_to content_tag(:i,nil, :class=>"fa fa-times"), run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -23,6 +23,27 @@
     </tbody>
   </table>
 </div>
+<div class="row">
+  <ul class="runs">
+    <li><%= link_to new_run_path do %><i class="fa fa-plus"></i><span> new</span><% end %></li>
+      <% @runs.each do |run| %>
+      <li>
+        <td><%= link_to run.name, edit_run_path(run) %></td>
+        <td>
+          <%= link_to edit_run_path(run) do %>
+          <%= run.hits.count %> hits over <%= run.elapsed_time %>
+          <% end %>
+        </td>
+        <td><%= link_to content_tag(:i,nil, :class=>"fa fa-times"), run, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </li>
+      <% end %>
+  </ul>
+</div>
 
 
-
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">14</span>
+    Cras justo odio
+  </li>
+</ul>
