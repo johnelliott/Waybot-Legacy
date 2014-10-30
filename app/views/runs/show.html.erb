@@ -1,26 +1,37 @@
 <h1>
-  <%= current_user.email %>
+  <%= @run.name %>
 </h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @run.name %>
-</p>
+<ul class="show">
+  <li>
+    <p>
+      <strong>Details:</strong>
+      <%= @run.note %>
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Completed:</strong>
+      <%= @run.completed %>
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Vehicles:</strong>
+      <%= @run.hits.count %>
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Time:</strong>
+      <%= @run.elapsed_time %>
+      <br>
+      <%= @run.start_time.strftime("%B %d, %Y") %> to <%= @run.end_time.strftime("%B %d, %Y") %>
+    </p>
+  </li>
+</ul>
 
-<p>
-  <strong>Note:</strong>
-  <%= @run.note %>
-</p>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @run.start_time %> to <%= @run.end_time %>
-</p>
-
-<p>
-  <strong>Completed:</strong>
-  <%= @run.completed %>
-</p>
 
 <%= link_to 'Edit', edit_run_path(@run) %> |
 <%= link_to 'Back', runs_path %>

@@ -6,7 +6,7 @@ table {
   @extend .table, .table-hover, .table-responsive;
 }
 
-ul.runs {
+ul.runs, ul.show {
   @extend .list-group;
 
   h1, h2, h3, h4 {
@@ -21,16 +21,43 @@ ul.runs {
   }
 }
 
+.row {
+  @extend .col-md-10;
+}
 form {
   @extend .form-horizontal;
-  // div.field  {
-  //   @extend .form-group;
-  // }
-  input {
+  
+  .field  {
+    @extend .form-group;
+  }
+
+  label {
+    @extend .col-md-2;
+  }
+
+  input, textarea, select {
     @extend .form-control;
+    .select {
+      width: auto;
+    }
   }
   .actions {
-    @extend .btn, .btn-submit;
+    @extend .btn;
   }
+
+  // #run_json {
+  //   @extend .btn;
+  //   color: red;
+  // }
 }
 
+div.error-explanation {
+  //add bs notics here
+}
+
+// ul.show {
+//   @extend .list-group;
+//   li {
+//     @extend .list-group-item
+//   }
+// }
