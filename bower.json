@@ -17,6 +17,7 @@
   ],
   "devDependencies": {
     "fontawesome": "~4.2.0",
-    "bootstrap-sass-official": "~3.3.0"
+    "bootstrap-sass-official": "~3.3.0",
+    "bootstrap-sass": "~3.0.2"
   }
 }
