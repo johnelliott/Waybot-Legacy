@@ -19,7 +19,46 @@
     <%= f.label :note %><br>
     <%= f.text_area :note %>
   </div>
-  <div class="field">
+
+  <div class="field"><%= f.file_field :json %></div>
+
+  <div class='col-sm-6'>
+    <div class="form-group">
+      <%= f.label :start_time do %>
+      <div class='input-group date' id='datetimepicker1'>
+        <%= text_field_tag 'start_time', nil, class: 'form-control' %>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+      <% end -%>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      $('#datetimepicker1').datetimepicker();
+    });
+  </script>
+
+    <div class='col-sm-6'>
+    <div class="form-group">
+      <%= f.label :end_time do %>
+      <div class='input-group date' id='datetimepicker2'>
+        <%= text_field_tag 'end_time', nil, class: 'form-control' %> <!-- THIS IS WHAT I NEED TO DO IN EBR -->
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+      <% end -%>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      $('#datetimepicker2').datetimepicker();
+    });
+  </script>
+
+   <div class="field">
     <%= f.label :start_time %><br>
     <%= f.datetime_select :start_time %>
   </div>
@@ -27,13 +66,16 @@
     <%= f.label :end_time %><br>
     <%= f.datetime_select :end_time %>
   </div>
+  
   <div class="field">
-   <%= f.check_box :completed %> <%= f.label :completed %>
+    <%= f.label :completed do %>
+      <%= f.check_box :completed %> 
+      completed
+    <% end %>
   </div>
-
-  <div class="field"><%= f.file_field :json %></div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<hr>

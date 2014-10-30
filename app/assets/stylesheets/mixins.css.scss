@@ -30,18 +30,15 @@ form {
     // @extend .col-md-12;
   }
 
-  label {
-    @extend .col-md-2;
-  }
+  // label {
+  //   @extend .col-md-2;
+  // }
 
   input, textarea, select {
     @extend .form-control;
     .select {
       width: auto;
     }
-  }
-  .actions {
-    @extend .btn;
   }
 
   input[type=checkbox] {
