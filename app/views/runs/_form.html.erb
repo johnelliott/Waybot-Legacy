@@ -26,7 +26,7 @@
     <div class="form-group">
       <%= f.label :start_time do %>
       <div class='input-group date' id='datetimepicker1'>
-        <%= text_field_tag 'start_time', nil, class: 'form-control' %>
+        <%= f.text_field :start_time, class: 'form-control' %> <!-- THIS IS WHAT I NEED TO DO IN EBR -->
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>
@@ -36,7 +36,10 @@
   </div>
   <script type="text/javascript">
     $(function () {
-      $('#datetimepicker1').datetimepicker();
+      $('#datetimepicker1').datetimepicker({
+        language: 'en',
+        format: 'YYYY-MM-DD hh:mm:ss'
+      });
     });
   </script>
 
@@ -44,7 +47,7 @@
     <div class="form-group">
       <%= f.label :end_time do %>
       <div class='input-group date' id='datetimepicker2'>
-        <%= text_field_tag 'end_time', nil, class: 'form-control' %> <!-- THIS IS WHAT I NEED TO DO IN EBR -->
+        <%= f.text_field :end_time, class: 'form-control' %> <!-- THIS IS WHAT I NEED TO DO IN EBR -->
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>
@@ -54,7 +57,10 @@
   </div>
   <script type="text/javascript">
     $(function () {
-      $('#datetimepicker2').datetimepicker();
+      $('#datetimepicker2').datetimepicker({
+        language: 'en',
+        format: 'YYYY-MM-DD hh:mm:ss'
+      });
     });
   </script>
 
