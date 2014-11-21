@@ -15,7 +15,8 @@
 // My files
  @import "main";
  @import "mixins";
- 
+ @import "variables"; 
+
 // Font Awesome
  @import "fontawesome/scss/variables";
  @import "fontawesome/scss/mixins";
@@ -35,8 +36,8 @@
 @import 'bootstrap-datetimepicker';
 
 // main.css.scss
-@import "bootswatch_variables.scss";
-@import "bootswatch.scss";
+// @import "bootswatch_variables.scss";
+// @import "bootswatch.scss";
 
 // Core variables and mixins
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/variables";

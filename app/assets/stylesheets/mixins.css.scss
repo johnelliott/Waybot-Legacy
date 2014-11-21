@@ -20,6 +20,10 @@ ul.runs, ul.show {
   p {
     @extend .list-group-item-text;
   }
+
+  .summary{
+    @extend .badge;
+  }
 }
 
 form {
