@@ -29,6 +29,7 @@ class RunsController < ApplicationController
   def create
     store_hits_helper
     @run = Run.new(run_params.except(:json))
+    @run.user_id = current_user.id
 
     respond_to do |format|
       if @run.save
