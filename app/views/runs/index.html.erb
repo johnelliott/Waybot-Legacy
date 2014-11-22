@@ -1,12 +1,16 @@
   <ul class="runs">
-    <li><h3><%= link_to new_run_path do %><i class="fa fa-plus"></i><span> new</span><% end %></h3></li>
+    <li>
+      <h4>
+        <%= link_to new_run_path do %><i class="fa fa-plus"></i><span> add run</span><% end %>
+      </h4>
+    </li> 
       <% @runs.each do |run| %>
       <li>
-        <h4><%= link_to run.name, edit_run_path(run) %>  <%= link_to content_tag(:i,nil, :class=>"fa fa-times-circle"), run, method: :delete, data: { confirm: 'Are you sure?' } %></h4>
-        <p>
+      <span class="summary"><%= link_to run.hits.count, edit_run_path(run) %></span>
+        <p><%= link_to run.name, edit_run_path(run) %>
           <%= link_to run_path(run) do %>
-          <%= run.hits.count %> hits over <%= run.elapsed_time %>
-          <% end %></p>
+          <% end %>
+        </p>
       </li>
       <% end %>
   </ul>
