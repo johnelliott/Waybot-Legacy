@@ -60,6 +60,9 @@ end
 gem 'factory_girl_rails'
 gem 'faker', '~> 1.4.3'
 
+# Use chartkick for charts of some JSON
+gem 'chartkick'
+
 group :production do
   # Use 12factor for asset precompilation on rails
   gem 'rails_12factor'
