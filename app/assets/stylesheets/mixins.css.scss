@@ -1,3 +1,6 @@
+.wb-container {
+  @extend .container;
+}
 
 .wb-page-content {
   // put all the content inside a row instead of adding it to every template
@@ -54,7 +57,6 @@ form {
     display: inline;
   }
 }
-
 
 .wb-alerts {
   @extend .row;
