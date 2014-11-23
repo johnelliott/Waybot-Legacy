@@ -1,3 +1,8 @@
+
+.wb-page-content {
+  // put all the content inside a row instead of adding it to every template
+  @extend .row;
+}
 .page {
   // @extend .col-md-12;
   // padding: 1em 2.5em;
@@ -48,20 +53,18 @@ form {
   input[type=checkbox] {
     display: inline;
   }
-
-  // #run_json {
-  //   @extend .btn;
-  //   color: red;
-  // }
 }
 
-div.error-explanation {
-  //add bs notics here
-}
 
-// ul.show {
-//   @extend .list-group;
-//   li {
-//     @extend .list-group-item
-//   }
-// }
+.wb-alerts {
+  @extend .row;
+  p {
+    @extend .alert;
+  }
+  p.wb-alert {
+    @extend .alert-warning;
+  }
+  p.wb-notice {
+    @extend .alert-info;
+  }
+}
