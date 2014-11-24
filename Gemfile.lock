@@ -65,6 +65,8 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.3)
     formatador (0.2.5)
+    groupdate (2.3.0)
+      activesupport (>= 3)
     guard (2.6.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -184,6 +186,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker (~> 1.4.3)
+  groupdate
   guard
   guard-livereload
   jbuilder (~> 2.0)
