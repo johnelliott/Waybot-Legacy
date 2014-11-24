@@ -1,14 +1,22 @@
 <h1>
   <%= @run.name %>
 </h1>
+<!-- test chartist -->
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-<%= timeline [
-  ["Washington", "1789-04-29", "1797-03-03"],
-  ["Adams", "1797-03-03", "1801-03-03"],
-  ["Jefferson", "1801-03-03", "1809-03-03"]
-] %>
 
 <ul class="show">
+  <li>
+    <p>
+    <strong>Chart:</strong>
+      <%= column_chart @run.speeds_count_chart %>
+    </p>
+  </li>
+  <li>
+    <p>
+    <strong>Chart:</strong>
+     <%= column_chart({Faker::Name.name => Faker::Number.number(2), Faker::Name.name => Faker::Number.number(2)}) %>
+    </p>
+  </li>
   <li>
     <p>
       <strong>Details:</strong>
