@@ -8,6 +8,6 @@ class Run < ActiveRecord::Base
     distance_of_time_in_words(thestart, theend)
   end
   def speeds_count_chart
-    self.hits.group(:speed).count
+    self.hits.group_by{|hit| hit.time.hour}.count
   end
 end
