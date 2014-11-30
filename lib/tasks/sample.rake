@@ -7,7 +7,8 @@ namespace :db do
       Faker::Number.digit.to_i.times do
         run = FactoryGirl.create :run, user: user
         Faker::Number.number(2).to_i.times do
-          FactoryGirl.create :hit, run: run
+          # The Time.now - 1000 is where I want to use the poisson to put in the next hit time
+          FactoryGirl.create(:hit, run: run, time: Time.now - 1000) 
         end
       end
     end
