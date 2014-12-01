@@ -8,13 +8,7 @@
   <li>
     <p>
     <strong>Chart:</strong>
-      <%= column_chart 'group' => @run.speeds_count_chart %>
-    </p>
-  </li>
-  <li>
-    <p>
-    <strong>Chart:</strong>
-     <%= column_chart({Faker::Name.name => Faker::Number.number(2), Faker::Name.name => Faker::Number.number(2)}) %>
+      <%= column_chart @run.test_chart %>
     </p>
   </li>
   <li>

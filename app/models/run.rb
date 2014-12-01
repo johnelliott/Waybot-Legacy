@@ -7,7 +7,10 @@ class Run < ActiveRecord::Base
     theend = self.end_time
     distance_of_time_in_words(thestart, theend)
   end
-  def speeds_count_chart
-    self.hits.group_by{|hit| hit.time.hour}.count
+  def test_chart
+    self.hits.group_by_hour(:time, format: "%l %P").count
+  end
+  def faker_test_chart
+    {Faker::Name.name => Faker::Number.number(2), Faker::Name.name => Faker::Number.number(2)}
   end
 end
