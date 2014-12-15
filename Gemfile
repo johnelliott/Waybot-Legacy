@@ -45,6 +45,11 @@ gem 'devise'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
+# add support for the faye sockets library
+gem 'thin'
+gem 'faye-rails'
+gem 'jquery-turbolinks'
+
 group :test do
   gem "minitest"
 end
