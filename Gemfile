@@ -56,9 +56,13 @@ group :development do
   gem 'rack-livereload'
   gem 'rb-readline'
 end
-# Use factory girl and faker to 
+# Use factory girl and faker to create test and demo data
 gem 'factory_girl_rails'
 gem 'faker', '~> 1.4.3'
+
+# Use chartkick for charts of some JSON
+gem 'chartkick'
+gem 'groupdate'
 
 group :production do
   # Use 12factor for asset precompilation on rails

@@ -1,8 +1,16 @@
 <h1>
   <%= @run.name %>
 </h1>
+<!-- test chartist -->
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 <ul class="show">
+  <li>
+    <p>
+    <strong>Chart:</strong>
+      <%= column_chart @run.test_chart %>
+    </p>
+  </li>
   <li>
     <p>
       <strong>Details:</strong>
