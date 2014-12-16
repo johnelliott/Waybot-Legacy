@@ -24,3 +24,6 @@
 
 # my own rake task
 john.rake
+
+# ignore bower components
+vendor/assets/bower_components
