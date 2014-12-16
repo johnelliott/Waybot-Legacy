@@ -9,6 +9,8 @@ window.client = new Faye.Client('http://localhost:3001/hits', {
     timeout: 120
 });
 
+////////// could this code be encapsulated within the backbone code so I only connect when I have a backbone view going?
+
 var subscription = window.client.subscribe('/hits', function(message) {
     hits.storeHit(message);
 });
@@ -19,7 +21,6 @@ var subscription = window.client.subscribe('/hits', function(message) {
 // Hit Data Model: 
 var Hit = Backbone.Model.extend({
   defaults: {
-    run_id: '',
     time: '',
     speed: ''
   }
@@ -33,6 +34,8 @@ var HitCollection = Backbone.Collection.extend({
   storeHit: function(message){
     this.add(JSON.parse(message));
   }
+  // don't forget to fetch from the rails server in case this is an existing thing, and handle if it's not (i.e. a new run)
+  // also don't forget to sync the data with rails when the save run is clicked
 });
 
 // Create collection and (not a, for now) router:
