@@ -14,8 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.turbolinks
+//
 //= require faye
+//
+//= require underscore
+//= require backbone
+// 
 //= require bootstrap-sass-official/assets/javascripts/bootstrap.js
 //= require moment
 //= require bootstrap-datetimepicker
+//
 //= require_tree .
