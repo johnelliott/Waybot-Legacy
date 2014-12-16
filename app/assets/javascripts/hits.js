@@ -10,10 +10,7 @@ window.client = new Faye.Client('http://localhost:3001/hits', {
 });
 
 var subscription = window.client.subscribe('/hits', function(message) {
-    console.log(message);
-    hits.storeHit(message, function(){
-        console.log("hit stored");
-    });
+    hits.storeHit(message);
 });
 // end subscriber
 
@@ -32,11 +29,9 @@ var Hit = Backbone.Model.extend({
 // Run Models Collection:
 var HitCollection = Backbone.Collection.extend({
   model: Hit,
-  url: '/hits',
-  storeHit: function(message, callback){
-    var json = JSON.parse(message);
-    // do some other things to save the time and speed into the model
-    callback();
+  url: '/',
+  storeHit: function(message){
+    this.add(JSON.parse(message));
   }
 });
 
@@ -47,5 +42,8 @@ var hits = new HitCollection();
 // Fetch collection, and then start history:
 hits.fetch().then(function() {
   Backbone.history.start();
-  console.log('hello from hits collection fetch callback');
+});
+
+hits.on('add', function(data){
+    console.log("hit stored 2 Backbone: " + JSON.stringify(data));
 });
