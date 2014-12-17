@@ -31,7 +31,11 @@ var HitCollection = Backbone.Collection.extend({
   model: Hit,
   url: 'http://localhost:3000/',
   sync: function(method, collection, options) {options.dataType = 'jsonp';},
-
+  client: new Faye.Client('http://localhost:3001/hits', {
+          retry: 5,
+          timeout: 120
+  }),
+  subscribe: function(){},
   initialize: function(){
         // set up backbone chart
         Highcharts.setOptions({
@@ -40,18 +44,18 @@ var HitCollection = Backbone.Collection.extend({
             }
         });
 
-        var client = new Faye.Client('http://localhost:3001/hits', {
-          retry: 5,
-          timeout: 120
-      });
-
-        client.subscribe('/hits', function(message) {
+      //   var client = new Faye.Client('http://localhost:3001/hits', {
+      //     retry: 5,
+      //     timeout: 120
+      // });
+        var self = this;
+        this.client.subscribe('/hits', function(message) {
             console.log(message); // this event isn't firing
-            // SOMETHING.add(JSON.parse(message));
+            self.add(JSON.parse(message));
             console.log(this);
         });
     }
-    
+
 }
 );
 
