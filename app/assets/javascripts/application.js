@@ -19,6 +19,7 @@
 //
 //= require underscore
 //= require backbone
+//= require highcharts
 // 
 //= require bootstrap-sass-official/assets/javascripts/bootstrap.js
 //= require moment
