@@ -23,7 +23,7 @@ var Hit = Backbone.Model.extend({
   defaults: {
     time: '',
     speed: ''
-  }
+}
 });
 
 // Hit Models Collection:
@@ -31,33 +31,36 @@ var HitCollection = Backbone.Collection.extend({
   model: Hit,
   url: 'http://localhost:3000/',
   sync: function(method, collection, options) {options.dataType = 'jsonp';},
-  client: new Faye.Client('http://localhost:3001/hits', {
-    retry: 5,
-    timeout: 120
-  }),
-  storeHit: function(message){
-    console.log('hit stored');
-    this.create(JSON.parse(message));
-  },
-  init: function(){
-    // set up backbone chart
-    Highcharts.setOptions({
-        global: {
-            useUTC: false
-        }
-    });
-    client.subscribe('/hits', function(message) {
-        console.log(message); // this event isn't firing
-        this.storeHit(message);
-    });
-  }
-});
+
+  initialize: function(){
+        // set up backbone chart
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+
+        var client = new Faye.Client('http://localhost:3001/hits', {
+          retry: 5,
+          timeout: 120
+      });
+
+        client.subscribe('/hits', function(message) {
+            console.log(message); // this event isn't firing
+            // SOMETHING.add(JSON.parse(message));
+            console.log(this);
+        });
+    }
+    
+}
+);
 
 // Create collection
 var hits = new HitCollection();
 
 var ChartView = Backbone.View.extend({
     el: '.show li:first-child',
+    collection: hits,
     events: {
         'add': function(){
             console.log("hit stored");
@@ -66,7 +69,6 @@ var ChartView = Backbone.View.extend({
             this.chart.series.addPoint([x, y], true, true);
         }
     },
-    collection: hits,
     init: function(){
         this.$el.highcharts({
             chart: {
@@ -99,47 +101,46 @@ var ChartView = Backbone.View.extend({
                             //     y = Math.random();
                             //     series.addPoint([x, y], true, true);
                             // }, 1000);
-                        }
-                    }
-                },
-                title: {
-                    text: 'Run progress'
-                },
-                xAxis: {
-                    type: 'linear',
-                    tickPixelInterval: 150
-                },
-                yAxis: {
-                    title: {
-                        text: 'Speed'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }],
-                    labels: {
-                        formatter: function() {
-                            return this.value + ' MPH';
-                        }
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                        Highcharts.numberFormat(this.y, 2);
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                exporting: {
-                    enabled: false
-                }
-        });
-this.render();
+}
+}
+},
+title: {
+    text: 'Run progress'
+},
+xAxis: {
+    type: 'linear',
+    tickPixelInterval: 150
+},
+yAxis: {
+    title: {
+        text: 'Speed'
+    },
+    plotLines: [{
+        value: 0,
+        width: 1,
+        color: '#808080'
+    }],
+    labels: {
+        formatter: function() {
+            return this.value + ' MPH';
+        }
     }
+},
+tooltip: {
+    formatter: function () {
+        return '<b>' + this.series.name + '</b><br/>' +
+        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+        Highcharts.numberFormat(this.y, 2);
+    }
+},
+legend: {
+    enabled: false
+},
+exporting: {
+    enabled: false
+}
+});
+}
 });
 
 var chartView = new ChartView();
