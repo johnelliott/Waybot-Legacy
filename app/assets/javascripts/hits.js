@@ -26,7 +26,12 @@ var HitCollection = Backbone.Collection.extend({
     }
 });
 
-
-
 // Create collection
 var hits = new HitCollection();
+
+function addFayePoint(chartName){
+    console.log("hello from addFayePOint");
+    var x = hits.last().get('time');
+    var y = hits.last().get('speed');
+    chartName.series[0].addPoint([x, y], true, true);
+}
