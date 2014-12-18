@@ -6,9 +6,14 @@
   // put all the content inside a row instead of adding it to every template
   @extend .row;
 }
+
 .page {
   // @extend .col-md-12;
   // padding: 1em 2.5em;
+}
+
+.waybotChart {
+  @extend .col-md-12;
 }
 
 table {

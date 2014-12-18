@@ -7,12 +7,13 @@ Highcharts.setOptions({
     }
 });
 
-var chartLocation = 'container';
+var chartLocation = 'waybotChart';
 $(document).ready(function() {
     window.myChart = new Highcharts.Chart({
         chart: {
             renderTo: chartLocation,
-            type: 'column',
+            type: 'areaspline',
+            height: 150,
             //,
             // events: {
             //     load: function () {
@@ -29,15 +30,23 @@ $(document).ready(function() {
             // }
             },
             title: {
-                    text: 'Live bike data'
+                    text: ''
+            },
+            credits: {
+                enabled: false
             },
             xAxis: {
                 type: 'linear',
-                tickPixelInterval: 50
+                tickPixelInterval: 50,
+                startOnTick: false,
+                endOnTick: false,
+                title: {
+                    text: 'Seconds elapsed'
+                },
             },
             yAxis: {
                 title: {
-                    text: 'Value'
+                    text: 'Speed (mi/h)'
                 },
                 plotLines: [{
                     value: 0,
@@ -46,11 +55,17 @@ $(document).ready(function() {
                 }]
             },
             plotOptions: {
-                column: {
-                    pointPadding: 0,
-                    borderWidth: 0,
-                    groupPadding: 0,
-                    shadow: false
+                areaspline: {
+                    fillColor: {
+                        linearGradient: [0, 0, 0, 120],
+                        stops: [
+                            [0, '#666'],
+                            [1, '#fff']
+                        ]
+                    },
+                    marker: {
+                        radius: 3
+                    }
                 }
             },
             tooltip: {
@@ -68,7 +83,8 @@ $(document).ready(function() {
             },
         series: [{
             name: 'Bike',
-            data: [ ]
+            data: [ ],
+            color: '#777'
         }]
     });
 });

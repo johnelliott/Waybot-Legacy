@@ -20,7 +20,6 @@ var HitCollection = Backbone.Collection.extend({
         var self = this; // this is a hack to get this to refer to the collection within the subscription callback
         this.client.subscribe('/hits', function(message) {
             self.add(JSON.parse(message));
-            // console.log('hello form the faye callback ' + message);
             addFayePoint(myChart);
         });
     }
