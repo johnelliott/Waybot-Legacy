@@ -1,37 +1,39 @@
-//$('.show li:first-child');
+// chart.js
 
-$(function () {
-    $(document).ready(function () {
-        Highcharts.setOptions({
-            global: {
-                useUTC: false
-            }
-        });
+// set up backbone chart
+Highcharts.setOptions({
+    global: {
+        useUTC: false
+    }
+});
 
-        $('.show li:first-child').highcharts({
-            chart: {
-                type: 'spline',
-                animation: Highcharts.svg, // don't animate in old IE
-                marginRight: 10,
-                events: {
-                    load: function () {
-
-                        // set up the updating of the chart each second
-                        var series = this.series[0];
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = Math.random();
-                            series.addPoint([x, y], true, true);
-                        }, 1000);
-                    }
-                }
+var chartLocation = 'container';
+$(document).ready(function() {
+    window.myChart = new Highcharts.Chart({
+        chart: {
+            renderTo: chartLocation,
+            type: 'column',
+            //,
+            // events: {
+            //     load: function () {
+            //         // set up the updating of the chart each second                      
+            //         var series = this.series[0];
+            //         var faketime =0;
+            //         setInterval(function(){
+            //             faketime += 2;
+            //             // series.addpoint([Math.floor(faketime), Math.floor(Math.random()*30) ]);
+            //             series.addpoint({ x: Math.floor(faketime), y: Math.floor(Math.random()*30) });
+            //         }, 1200);
+            //     },
+            //     add: function(){ console.log('the add functino works'); }
+            // }
             },
             title: {
-                text: 'Live random data'
+                    text: 'Live bike data'
             },
             xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150
+                type: 'linear',
+                tickPixelInterval: 50
             },
             yAxis: {
                 title: {
@@ -43,11 +45,19 @@ $(function () {
                     color: '#808080'
                 }]
             },
+            plotOptions: {
+                column: {
+                    pointPadding: 0,
+                    borderWidth: 0,
+                    groupPadding: 0,
+                    shadow: false
+                }
+            },
             tooltip: {
                 formatter: function () {
                     return '<b>' + this.series.name + '</b><br/>' +
-                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                        Highcharts.numberFormat(this.y, 2);
+                        Highcharts.numberFormat(this.x, 0) + '<br/>' +
+                        Highcharts.numberFormat(this.y, 0);
                 }
             },
             legend: {
@@ -56,23 +66,10 @@ $(function () {
             exporting: {
                 enabled: false
             },
-            series: [{
-                name: 'Random data',
-                data: (function () {
-                    // generate an array of random data
-                    var data = [],
-                        time = (new Date()).getTime(),
-                        i;
-
-                    for (i = -19; i <= 0; i += 1) {
-                        data.push({
-                            x: time + i * 1000,
-                            y: Math.random()
-                        });
-                    }
-                    return data;
-                }())
-            }]
-        });
+        series: [{
+            name: 'Bike',
+            data: [ ]
+        }]
     });
 });
+
