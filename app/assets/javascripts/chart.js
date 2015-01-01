@@ -1,6 +1,6 @@
 // chart.js
-
 // set up backbone chart
+
 Highcharts.setOptions({
     global: {
         useUTC: false
@@ -8,6 +8,7 @@ Highcharts.setOptions({
 });
 
 var chartLocation = 'waybotChart';
+
 $(document).ready(function() {
     window.myChart = new Highcharts.Chart({
         chart: {
