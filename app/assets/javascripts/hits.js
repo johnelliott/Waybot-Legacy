@@ -4,8 +4,8 @@ var wbNode = wbNode || {};
 // Hit Data Model: 
 wbNode.Hit = Backbone.Model.extend({
     defaults: {
-	time: '',
-	speed: ''
+        time: '',
+        speed: ''
     }
 });
 
@@ -15,8 +15,8 @@ wbNode.HitCollection = Backbone.Collection.extend({
     url: 'http://localhost:3000/',
     sync: function(method, collection, options) {options.dataType = 'jsonp';},
     client: new Faye.Client('http://localhost:3001/hits', {
-	retry: 5,
-	timeout: 120
+        retry: 5,
+        timeout: 120
     }),
     addFayePoint: function(chartName){
 	// console.log("hello from addFayePoint");
@@ -29,7 +29,7 @@ wbNode.HitCollection = Backbone.Collection.extend({
         var self = this; // <- hack to refer to the collection within the subscription callback
         this.client.subscribe('/hits', function(message) {
             self.add(JSON.parse(message));
-            self.addFayePoint(myChart); // what about doing this in the view using the change method??
+            self.addFayePoint(wbNode.chartView.highchart); // what about doing this in the view using the change method??
         });
     }
 });
@@ -39,15 +39,80 @@ wbNode.hits = new wbNode.HitCollection();
 
 // make a view prototype
 wbNode.ChartView = Backbone.View.extend({
+    chartOptions: {
+        chart: {
+            renderTo: 'waybotChart',
+            animation: Highcharts.svg, // don't animate in old IE
+            type: 'areaspline',
+            height: 150
+	},
+	title: {
+            text: ''
+	},
+	credits: {
+            enabled: false
+	},
+	xAxis: {
+            type: 'linear',
+            tickPixelInterval: 50,
+            startOnTick: false,
+            endOnTick: false,
+            title: {
+		text: 'Seconds elapsed'
+            },
+	},
+	yAxis: {
+            title: {
+		text: 'Speed (mi/h)'
+            },
+            plotLines: [{
+		value: 0,
+		width: 1,
+		color: '#808080'
+            }]
+	},
+	plotOptions: {
+            areaspline: {
+		fillColor: {
+                    linearGradient: [0, 0, 0, 120],
+                    stops: [
+			[0, '#666'],
+			[1, '#fff']
+                    ]
+		},
+		marker: {
+                    radius: 3
+		}
+            }
+	},
+	tooltip: {
+            formatter: function () {
+		return '<b>' + this.series.name + '</b><br/>' +
+		    Highcharts.numberFormat(this.x, 0) + '<br/>' +
+		    Highcharts.numberFormat(this.y, 0);
+            }
+	},
+	legend: {
+            enabled: false
+	},
+	exporting: {
+            enabled: false
+	},
+	series: [{
+            name: 'Bike',
+            data: [ ],
+            color: '#777'
+	}]
+    },
     render: function(){
-	var rendered = 'hello world i am a view';
-	this.$el.html(rendered);
+	this.$el.html('<div id="waybotChart"></div>');
+	this.highchart = new Highcharts.Chart(this.chartOptions);
 	return this;
     }
 });
 
 // make a copy of the view
 $(document).ready(function() {
-    wbNode.chart = new wbNode.ChartView({el: '.chartView'});
-    wbNode.chart.render();
+    wbNode.chartView = new wbNode.ChartView({el: '.chartView'});
+    wbNode.chartView.render();
 });
