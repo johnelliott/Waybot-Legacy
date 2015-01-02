@@ -18,18 +18,11 @@ wbNode.HitCollection = Backbone.Collection.extend({
         retry: 5,
         timeout: 120
     }),
-    addFayePoint: function(chartName){
-	// console.log("hello from addFayePoint");
-	var x = this.last().get('time');
-	var y = this.last().get('speed');
-	chartName.series[0].addPoint([x, y], true, this.length>20 ? true:false);
-    },
     initialize: function(){
         // subscribe to counter data
-        var self = this; // <- hack to refer to the collection within the subscription callback
+        var self = this; // <- hack to refer to the collection within the following subscription callback
         this.client.subscribe('/hits', function(message) {
             self.add(JSON.parse(message));
-            self.addFayePoint(wbNode.chartView.highchart); // what about doing this in the view using the change method??
         });
     }
 });
@@ -104,15 +97,21 @@ wbNode.ChartView = Backbone.View.extend({
             color: '#777'
 	}]
     },
-    render: function(){
+    initialize: function(){
 	this.$el.html('<div id="waybotChart"></div>');
 	this.highchart = new Highcharts.Chart(this.chartOptions);
+	this.listenTo(this.collection, "add", this.render);
 	return this;
+    },
+    render: function() {
+	var x = this.collection.last().get('time');
+	var y = this.collection.last().get('speed');
+	var series = this.highchart.series[0];
+	series.addPoint([x, y], true, series.data.length>10 ? true:false);
     }
 });
 
 // make a copy of the view
 $(document).ready(function() {
-    wbNode.chartView = new wbNode.ChartView({el: '.chartView'});
-    wbNode.chartView.render();
+    wbNode.chartView = new wbNode.ChartView({el: '.chartView', collection:wbNode.hits});
 });
