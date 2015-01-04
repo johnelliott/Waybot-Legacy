@@ -52,6 +52,7 @@ gem 'jquery-turbolinks'
 
 group :test do
   gem "minitest"
+  gem "jasmine-rails"
 end
 
 group :development do
