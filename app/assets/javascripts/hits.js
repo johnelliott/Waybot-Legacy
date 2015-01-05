@@ -1,11 +1,11 @@
 // create app
 var wbNode = wbNode || {};
 
-// Hit Data Model: 
+// Hit Data Model:
 wbNode.Hit = Backbone.Model.extend({
     defaults: {
-        time: '',
-        speed: ''
+	time: '',
+	speed: ''
     }
 });
 
@@ -15,15 +15,15 @@ wbNode.HitCollection = Backbone.Collection.extend({
     url: 'http://localhost:3000/',
     sync: function(method, collection, options) {options.dataType = 'jsonp';},
     client: new Faye.Client('http://localhost:3001/hits', {
-        retry: 5,
-        timeout: 120
+	retry: 5,
+	timeout: 120
     }),
     initialize: function(){
-        // subscribe to counter data
-        var self = this; // <- hack to refer to the collection within the following subscription callback
-        this.client.subscribe('/hits', function(message) {
-            self.add(JSON.parse(message));
-        });
+	// subscribe to counter data
+	var self = this; // <- hack to refer to the collection within the following subscription callback
+	this.client.subscribe('/hits', function(message) {
+	    self.add(JSON.parse(message));
+	});
     }
 });
 
@@ -33,68 +33,68 @@ wbNode.hits = new wbNode.HitCollection();
 // make a view prototype
 wbNode.ChartView = Backbone.View.extend({
     chartOptions: {
-        chart: {
-            renderTo: 'waybotChart',
-            animation: Highcharts.svg, // don't animate in old IE
-            type: 'areaspline',
-            height: 150
+	chart: {
+	    renderTo: 'waybotChart',
+	    animation: Highcharts.svg, // don't animate in old IE
+	    type: 'areaspline',
+	    height: 150
 	},
 	title: {
-            text: ''
+	    text: ''
 	},
 	credits: {
-            enabled: false
+	    enabled: false
 	},
 	xAxis: {
-            type: 'linear',
-            tickPixelInterval: 50,
-            startOnTick: false,
-            endOnTick: false,
-            title: {
+	    type: 'linear',
+	    tickPixelInterval: 50,
+	    startOnTick: false,
+	    endOnTick: false,
+	    title: {
 		text: 'Seconds elapsed'
-            },
+	    },
 	},
 	yAxis: {
-            title: {
+	    title: {
 		text: 'Speed (mi/h)'
-            },
-            plotLines: [{
+	    },
+	    plotLines: [{
 		value: 0,
 		width: 1,
 		color: '#808080'
-            }]
+	    }]
 	},
 	plotOptions: {
-            areaspline: {
+	    areaspline: {
 		fillColor: {
-                    linearGradient: [0, 0, 0, 120],
-                    stops: [
+		    linearGradient: [0, 0, 0, 120],
+		    stops: [
 			[0, '#666'],
 			[1, '#fff']
-                    ]
+		    ]
 		},
 		marker: {
-                    radius: 3
+		    radius: 3
 		}
-            }
+	    }
 	},
 	tooltip: {
-            formatter: function () {
+	    formatter: function () {
 		return '<b>' + this.series.name + '</b><br/>' +
 		    Highcharts.numberFormat(this.x, 0) + '<br/>' +
 		    Highcharts.numberFormat(this.y, 0);
-            }
+	    }
 	},
 	legend: {
-            enabled: false
+	    enabled: false
 	},
 	exporting: {
-            enabled: false
+	    enabled: false
 	},
 	series: [{
-            name: 'Bike',
-            data: [ ],
-            color: '#777'
+	    name: 'Bike',
+	    data: [ ],
+	    color: '#777'
 	}]
     },
     initialize: function(){
@@ -112,6 +112,6 @@ wbNode.ChartView = Backbone.View.extend({
 });
 
 // make a copy of the view
-$(document).ready(function() {
-    wbNode.chartView = new wbNode.ChartView({el: '.chartView', collection:wbNode.hits});
-});
+$(document).ready(
+    //wbNode.chartView = new wbNode.ChartView({el: '.chartView', collection: wbNode.hits});
+);
