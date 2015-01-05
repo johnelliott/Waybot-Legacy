@@ -32,3 +32,5 @@ vendor/assets/bower_components
 \#*\#
 .\#*
 *\~
+
+*.log
