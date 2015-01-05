@@ -18,8 +18,8 @@
   "devDependencies": {
     "fontawesome": "~4.2.0",
     "bootstrap-sass-official": "~3.3.0",
-    "bootstrap-sass": "~3.0.2",
     "backbone": "~1.1.2",
-    "highcharts": "~4.0.4"
+    "highcharts": "~4.0.4",
+    "underscore": "~1.7.0"
   }
 }
